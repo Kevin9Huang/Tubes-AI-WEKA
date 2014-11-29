@@ -47,8 +47,24 @@ public class ManageBeans {
         datainstance = tempdata;
         System.out.println("Success NominalToString");
         //return datainstance;
+    }
+    
+    public void filterbyAlgorithm() throws Exception{
+        Instances tempdata = null;
+        Instance tempprocessdata = null;
+        Filter Nominaltostring = new NominalToString();
+        Nominaltostring.setInputFormat(datainstance);
+        for(int i = 0;i<datainstance.numInstances();i++)
+        {
+            Nominaltostring.input(datainstance.instance(i));
+        }
+        Nominaltostring.batchFinished();
+        tempdata = Filter.useFilter(datainstance,Nominaltostring);
+        datainstance = tempdata;
+        System.out.println("Success NominalToString");
         
     }
+    
     public Instances filterbyStringtoWordVector() throws Exception
     {
         Instances tempdata = null;
